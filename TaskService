@@ -1,0 +1,29 @@
+package com.taskmanager.service;
+
+import com.taskmanager.model.Task;
+import com.taskmanager.repository.TaskRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TaskService {
+
+    private final TaskRepository repo;
+
+    public TaskService(TaskRepository repo) {
+        this.repo = repo;
+    }
+
+    public List<Task> getTasks(Long userId) {
+        return repo.findByUserId(userId);
+    }
+
+    public Task save(Task task) {
+        return repo.save(task);
+    }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
+}
